@@ -1,0 +1,7 @@
+function pre_cmd() {
+  local stop=$((EPOCHREALTIME*1000))
+  local start=${cmd_timestamp:-$stop}
+  local elapsed=$(($stop - $start))
+  (($elapsed >0)) && echo " $fg[green] >> $(run-time-watcher $elapsed) $reset_color"
+  unset cmd_timestamp
+}
